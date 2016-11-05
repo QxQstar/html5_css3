@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ContentEditable </title>
+</head>
+<body>
+    <p ContentEditable="true" id="p">打开房间都几点回家防护等级地方很多机会</p>
+    <button type="button" id="btn" class="btn">确认</button>
+    <script type="text/javascript">
+        var p = document.getElementById('p');
+        var btn = document.getElementById('btn');
+        btn.addEventListener('click',function(){
+            console.log(p.firstChild.nodeValue);
+        },false)
+    </script>
+</body>
+</html>

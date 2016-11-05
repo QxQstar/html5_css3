@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>本地存储</title>
+</head>
+<body>
+<h1>HTML5本地存储</h1>
+<label for="date1">
+    选择日期： <input type="date" id="date1" onchange="date_onchange()">
+</label>
+<label>
+    <input type="button" value="保存" onclick="save()">
+</label>
+<div>
+    <p>本日日期：<span id="today"></span></p>
+    <div>
+        今日要事
+        <ol contenteditable="true">
+            <li id="li1">(尚无记录)</li>
+            <li id="li2">(尚无记录)</li>
+            <li id="li3">(尚无记录)</li>
+            <li id="li4">(尚无记录)</li>
+            <li id="li5">(尚无记录)</li>
+        </ol>
+    </div>
+</div>
+<script type="text/javascript">
+    var dateElement = undefined;
+    var today = undefined;
+    function window_onload(){
+        dateElement = document.getElementById('date1');
+        today = document.getElementById('today');
+    }
+    function date_onchange(){
+        var onj = undefined;
+        if(isNaN(Date.parse(dateElement.value))){
+            setToday();
+            return;
+        }
+        today.innerHTML = dateElement.value;
+        obj = JSON.parse(localStorage.getItem(dateElement.value));
+        setInnerHTML(obj);
+    }
+    function save(){
+        var obj = {};
+        obj.record = [];
+        if(document.getElementById('li1').innerHTML != '(尚未记录)'){
+            obj.record.push(document.getElementById('li1').innerHTML);
+        }
+        if(document.getElementById('li2').innerHTML != '(尚未记录)'){
+            obj.record.push(document.getElementById('li2').innerHTML);
+        }
+        if(document.getElementById('li3').innerHTML != '(尚未记录)'){
+            obj.record.push(document.getElementById('li3').innerHTML);
+        }
+        if(document.getElementById('li4').innerHTML != '(尚未记录)'){
+            obj.record.push(document.getElementById('li4').innerHTML);
+        }
+        if(document.getElementById('li5').innerHTML != '(尚未记录)'){
+            obj.record.push(document.getElementById('li5').innerHTML);
+        }
+        localStorage.setItem(dateElement.value,JSON.stringify(obj));
+    }
+    function setInnerHTML(obj){
+        if(obj === null || obj.record === null){
+            document.getElementById('li1').innerHTML = '(尚未记录)';
+            document.getElementById('li2').innerHTML = '(尚未记录)';
+            document.getElementById('li3').innerHTML = '(尚未记录)';
+            document.getElementById('li4').innerHTML = '(尚未记录)';
+            document.getElementById('li5').innerHTML = '(尚未记录)';
+        }else{
+            var str = 'li';
+            for(var i = 0;i<obj.record.length;i++){
+                if(obj.record[i] !== null){
+                    document.getElementById(str + 1).innerHTML = obj.record[i];
+                }else{
+                    document.getElementById(str + 1).innerHTML = '(尚未记录)';
+                }
+            }
+        }
+    }
+    function setToday(){
+        var date = new Date();
+        var yearStr = String(date.getFullYear());
+        var monthStr = String(date.getMonth() + 1);
+        var dateStr = String(date.getDate());
+        if(monthStr.length == 1){
+            monthStr = "0" + monthStr;
+        }
+        if(dateStr.length == 1){
+            dateStr = '0' + dateStr;
+        }
+        var str = yearStr + "_" + monthStr + "_" + dateStr;
+        dateElement.value = str;
+        today.innerHTML = dateElement.value;
+        var obj = JSON.parse(localStorage.getItem(dateElement.value));
+        setInnerHTML(obj);
+    }
+    window_onload();
+</script>
+</body>
+</html>

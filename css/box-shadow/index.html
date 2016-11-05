@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>box-shadow</title>
+    <style type="text/css">
+        body{
+            padding: 100px;
+        }
+        div{
+            height: 200px;
+            width: 200px;
+            display: inline-block;
+            *display:inline;
+            zoom: 1;
+            margin: 20px;
+            border: 1px solid #000000;
+        }
+        .one{
+            -webkit-box-shadow:  -15px -15px red;
+            -moz-box-shadow:  -15px -15px red ;
+            box-shadow:  -15px -15px red;
+        }
+        .two{
+            -webkit-box-shadow:  -15px -15px 5px red;
+            -moz-box-shadow:  15px  -15px 5px  red ;
+            box-shadow:  -15px -15px 5px red;
+        }
+        .three{
+            -webkit-box-shadow:  -15px -15px 0 -5px red;
+            -moz-box-shadow:  15px  -15px 0 -5px red ;
+            box-shadow:  -15px -15px 0 -5px red;
+        }
+        .four{
+            -webkit-box-shadow:  -15px -15px 5px -5px red;
+            -moz-box-shadow:  15px  -15px 5px -5px red ;
+            box-shadow:  -15px -15px 5px -5px red;
+        }
+        p{
+            height: 100px;
+            width: 400px;
+            margin: 20px 0;
+            border: 1px solid #000000;
+        }
+        .p1{
+            -webkit-box-shadow: 5px 0 red,-5px 0 blue ;
+            -moz-box-shadow: 5px 0 red , -5px 0 blue ;
+            box-shadow: 5px 0 red,-5px 0 blue ;
+        }
+        .p2{
+            -webkit-box-shadow: 5px 0 red,-5px 0 blue ,10px 0 green;
+            -moz-box-shadow: 5px 0 red , -5px 0 blue ,10px 0 green;
+            box-shadow: 5px 0 red,-5px 0 blue ,10px 0 green;
+        }
+        .p3{
+            -webkit-box-shadow:   0 2px 1px #222,0 6px #fff,0 10px 1px -3px #333,0 18px #fff,0 24px 3px -5px #888;
+            -moz-box-shadow: 0 2px 1px #222,0 6px #fff,0 10px 1px -3px #333,0 18px #fff,0 24px 3px -5px #888;
+            box-shadow: 0 2px 1px #222,0 6px #fff,0 10px 1px -3px #333,0 18px #fff,0 24px 3px -5px #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="one">
+        阴影无模糊无收缩效果
+    </div>
+    <div class="three">
+        阴影无模糊有收缩效果
+    </div>
+    <div class="two">
+        阴影有模糊无收缩效果
+    </div>
+    <div class="four">
+        阴影有模糊有收缩效果
+    </div>
+    <section>
+        <p class="p1"></p>
+        <p class="p2"></p>
+        <p class="p3"></p>
+    </section>
+</body>
+</html>

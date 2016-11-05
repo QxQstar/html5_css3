@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Geolocation API</title>
+</head>
+<body>
+<div id="map" style="height: 400px;width: 500px;"></div>
+<!--<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>-->
+<script type="text/javascript">
+    var message = {
+      enableHighAccuracy:true,
+        timeout:60000
+    };
+    function window_load(){
+        if(navigator.geolocation == null){
+            alert('你的浏览器不支持')
+        }else{
+            navigator.geolocation.getCurrentPosition(showMap,onError,message);
+        }
+    }
+    function showMap(position){
+        var coords = position.coords;
+        var latlng = new google.map.LatLng(coords.latitude,coords.longitude);
+        var myOptions = {
+            zoom:18,
+            center:latlng,
+            mapTypeId:google.maps.MapTypeId.ROADMAP
+        };
+        var map1 = new google.maps.Map(document.getElementById('map'),
+        myOptions);
+        var marker = new google.maps.Marker({
+            opsition:latlng,
+            map:map1
+        });
+        var infowindow =  new google.maps.InfoWindow({
+            content:'当前位置'
+        });
+        infowindow.open(map1,marker);
+    }
+    function onError(error){
+        var message = '';
+        switch (error.code){
+            case error.PERMISSION_DENIED:
+                message = '位置服务被拒绝';
+                break;
+            case  error.POSITION_UNAVAILABLE:
+                message = '未能获取到位置信息';
+                break;
+            case error.PERMISSION_DENIED_TIMEOUT:
+                message  = '在规定时间内未能获取位置信息';
+                break;
+        }
+        if(message === ""){
+            alert('由于不明原因未能获取位置信息,错误号' +  error.code.toString() +')' );
+        }else{
+            alert(message);
+        }
+    }
+    window_load();
+</script>
+</body>
+</html>

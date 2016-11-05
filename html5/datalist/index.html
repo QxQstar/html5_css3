@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!-- IE6至IE9不支持datalist -->
+<input type="email" list="emailList" id="email">
+<datalist id="emailList">
+    <option value="*@qq.com">
+    <option value="*@163.com">
+    <option value="*@gmail.com">
+    <option value="*@139.com">
+</datalist>
+<script type="text/javascript">
+    var eleMail = document.getElementById('email'),
+            emailList = document.getElementById('emailList');
+
+    if('placeholder' in eleMail){//placeholder属性在IE9之前的浏览器都不支持，datalist在IE9之前的浏览器也不支持
+
+        var arrEmail = Array.prototype.slice.call(emailList.getElementsByTagName('option')).map(function(option){
+            return option.value.replace('*@',"");
+        }),emailListHtml = emailList.innerHTML;
+
+        eleMail.replaceInfo = function() {
+            var value = this.value.split('@');
+            if (value.length !== 2 || arrEmail.indexOf(value[1]) < 0) {
+                emailList.innerHTML = emailListHtml.replace(/\*/g, value[0]);
+            }
+        };
+        eleMail.addEventListener('input',function(){
+            this.replaceInfo();
+        },false);
+        eleMail.focus();
+    }else{
+        indexOption = -1;
+//        1.得到所有邮箱的后缀
+        var houzui = [];
+        var option = emailList.getElementsByTagName('option');
+        for(var i = 0,len = option.length;i<len;i++){
+            houzui.push(option[i].replace('*'),"");
+        }
+//        3.事件处理程序
+        eleMail.replaceInfo = function(){
+            var selHtml = "",optionLength = 0;
+            var value = this.value;
+            var arrValue = value.split('@');
+            for(var i = 0,len = houzui.length ;i<len;i++) {
+                if (arrValue.length !== 2 || arrValue[1] === "" || houzui[i].indexOf(arrValue[1]) === 1) {
+                    selHtml += "<option value='"+arrValue[0] +houzui[i] +"'>"+ arrValue[0] + houzui[i] +"</option>";
+                    optionLength ++;
+                }
+            }
+            if(optionLength > 1){
+                emailList.innerHTML = "<select size='"+ optionLength +"'>" +
+                            selHtml
+                        +"</select>"
+            }
+
+        };
+//        2.绑定事件
+        eleMail.attachEvent('onpropertychange',function(){
+                eleMail.replaceInfo();
+        });
+
+        //
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Web Workers演示</title>
+</head>
+<body>
+    <div>
+        开始时间：<span id="start"></span>
+    </div>
+    <div>
+        结束时间：<span id="end"></span>
+    </div>
+    <ul id="list"></ul>
+    <script type="text/javascript">
+      var start = new Date();
+        document.getElementById('start').innerHTML = String(start.getMinutes() + ":" + start.getMinutes() + ":" + start.getMilliseconds());
+      var list = document.getElementById('list');
+      var work = new Worker('./one.js');
+      var sum = 0;
+      work.postMessage(sum);
+      work.onmessage = function(e){
+          list.innerHTML = e.data.sum;
+          document.getElementById('end').innerHTML = e.data.time;
+      };
+//        for(var i = 0;i<1000000;i++){
+//            sum += i;
+//        }
+//      list.innerHTML = sum;
+//        var end = new Date();
+//      document.getElementById('end').innerHTML = String(end.getMinutes() + ":" + end.getMinutes() + ":" + end.getMilliseconds());
+
+    </script>
+</body>
+</html>

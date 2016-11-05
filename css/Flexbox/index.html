@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>弹性盒子</title>
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .clear:after{
+            content: "";
+            width: 0;
+            display: block;
+            clear: both;
+            visibility: hidden;
+            overflow: hidden;
+        }
+        .container .right{
+            position: relative;
+            float: right;
+            width: 100%;
+
+        }
+        .container .right .content{
+            margin-left: 200px;
+            background-color: red;
+        }
+        .container .left{
+            float: left;
+            width: 190px;
+            margin-right: -190px;
+            background-color: green;
+        }
+        .container2 .conn1{
+            float: left;
+            width: 160px;
+            margin-right: -160px;
+            background-color: bisque;
+        }
+        .container2 .middle{
+            position: relative;
+            float: left;
+            width: 100%;
+        }
+        .container2 .conn2{
+            margin: 0 210px 0 170px;
+            background-color: #333333;
+        }
+        .container2 .conn3{
+            float: right;
+            width: 200px;
+            margin-left: -200px;
+            background-color: darkgreen;
+        }
+        .container3 .middle{
+            position: relative;
+            float: left;
+            width: 100%;
+        }
+        .container3 .conn1{
+            margin-right: 250px;
+        }
+        .container3 .conn2{
+            float: right;
+            width: 240px;
+            margin-left: -240px;
+            background-color: #ff4400;
+        }
+        .container3 .conn1L{
+            float: left;
+            width: 100px;
+            margin-right: -100px;
+            background-color: olivedrab;
+        }
+        .container3 .conn1R{
+            width: 100%;
+            float: left;
+        }
+        .container3 .conn1R .big{
+            margin-left: 110px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container clear">
+        <div class="left">left</div>
+        <div class="right">
+            <div class="content">
+                <p>dkfd</p>
+            </div>
+        </div>
+    </div>
+    <div class="container2 clear">
+        <div class="conn1">111</div>
+        <div class="middle">
+            <div class="conn2">222</div>
+        </div>
+        <div class="conn3">333</div>
+    </div>
+    <div class="container3 clear">
+        <div class="middle">
+            <div class="conn1 clear">
+                <div class="conn1L">
+                    111
+                </div>
+                <div class="conn1R">
+                    <div class="big">333</div>
+                </div>
+            </div>
+        </div>
+        <div class="conn2">222</div>
+    </div>
+</body>
+</html>

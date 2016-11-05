@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>3d正方体旋转</title>
+    <style type="text/css">
+        body{
+            background-color: #000000;
+        }
+        #box{
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            width: 300px;
+            height: 300px;
+            margin:auto;
+
+            transform-style:preserve-3d;
+            animation: rotate linear 5s infinite;
+        }
+        @keyframes rotate{
+            0%{
+                transform:rotateX(0) rotateY(0) rotateZ(0)
+            }
+            30%{
+                transform:rotateX(30deg) rotateY(25deg) rotateZ(45deg)
+            }
+            70%{
+                transform:rotateX(270deg) rotateY(200deg) rotateZ(145deg)
+            }
+            100%{
+                transform:rotateX(360deg) rotateY(360deg) rotateZ(360deg)
+            }
+
+        }
+        #box div{
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
+            position: absolute;
+            left: 0;top: 0;
+            font-size: 160px;
+            color: white;
+            line-height: 300px;
+            text-align: center;
+            opacity: 0.9;
+            box-shadow: 0 0 50px blue;
+        }
+        /*正面*/
+        .div1{
+            transform: translateZ(150px);
+            background-color: red;
+        }
+        /*左面*/
+        .div2{
+            transform: translateZ(-150px) rotateY(-90deg) ;
+            transform-origin: left;
+            background-color: black;
+        }
+        /*下面*/
+        .div3{
+            transform:  translateZ(-150px) rotateX(-90deg);
+            transform-origin: bottom;
+            background-color: yellow;
+        }
+        /*右面*/
+        .div4{
+            transform:  translateZ(-150px) rotateY(90deg);
+            transform-origin: right;
+            background-color: green;
+        }
+        /*上面*/
+        .div5{
+            transform:  translateZ(-150px) rotateX(90deg);
+            transform-origin: top;
+            background-color: violet;
+        }
+        /*后面*/
+        .div6{
+            transform:translateZ(-150px) rotateY(-180deg);
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div class="div1">1</div>
+    <div class="div2">2</div>
+    <div class="div3">3</div>
+    <div class="div4">4</div>
+    <div class="div5">5</div>
+    <div class="div6">6</div>
+</div>
+</body>
+</html>

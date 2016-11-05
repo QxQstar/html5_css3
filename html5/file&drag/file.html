@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>将文件拖到浏览器窗口预览</title>
+    <style type="text/css">
+        form{
+            width: 500px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+        p{
+            font-size: 30px;
+            font-weight: bold;
+        }
+        #show{
+            border: 5px #000000 dashed;
+            height: 300px;
+            resize: both;
+            overflow: auto;
+        }
+        button{
+            border: none;
+            background-color: #161414;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <p>文件预览并上传</p>
+        <div id="show">
+
+        </div>
+        <p>
+            <button type="button">上传</button>
+        </p>
+    </form>
+<script type="text/javascript">
+    var sendInformation = {};
+    function init(){
+        var dest = document.getElementById('show');
+        dest.addEventListener('dragover',function(event){
+            event.preventDefault();
+            event.stopPropagation();
+        },false);
+
+        dest.addEventListener('dragend',function(event){
+            event.preventDefault();
+            event.stopPropagation();
+        },false);
+
+        dest.addEventListener('drop',function(event){
+            event.preventDefault();
+            event.stopPropagation();
+
+            var file = event.dataTransfer.files[0];
+            var reader = new FileReader();
+            sendInformation.name = file.name;
+            if(file.type.substr(0,5) === 'image'){
+                reader.onload = function(event){
+                    dest.style.background = 'url('+ event.target.result+')' +
+                            'no-repeat center';
+                    dest.innerHTML = '';
+                };
+                reader.readAsDataURL(file);
+            }else if(file.type.substr(0,4) == 'text'){
+                reader.onload = function(f){
+                    dest.innerHTML = '<pre>' + f.target.result + '<pre>';
+                    dest.style.background = '#ffffff';
+                };
+                reader.readAsText(file);
+            }else{
+                dest.innerHTML = '你的浏览器不支持这类文件的预览';
+            }
+        },false)
+    }
+    init();
+</script>
+</body>
+</html>

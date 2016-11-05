@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>css filters</title>
+    <style type="text/css">
+        div{
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            display: inline-block;
+            *display:inline;
+            zoom: 1;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+        }
+        .blur img{
+            filter:blur(3px);
+        }
+        .brightness img{
+            filter:brightness(200%);
+        }
+        .contrast img{
+            filter:contrast(1.5);
+        }
+        .drop-shadow img{
+            filter:drop-shadow(2px 2px 4px  red);
+        }
+        .grayscale img{
+            filter:grayscale(1)
+        }
+        .hue-rotate img{
+            filter:hue-rotate(330deg);
+        }
+        .invert img{
+            filter:invert(100%);
+        }
+
+        .opacity img{
+            filter:opacity(20%);
+        }
+        .saturate img{
+            filter:saturate(400%);
+        }
+        .sepia img{
+            filter:sepia(100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="blur">
+        <p>blur()参数是一个css长度，但是不能接受百分数。值越大越模糊</p>
+        <img src="d51f7f6e5bced138a8dea9c1acc8a8dc.jpg">
+    </div>
+
+    <div class="brightness">
+        <p>brightness()让元素更暗或者更亮，如果参数为0%，元素会全黑，如果是100%将不会有变化.值越大越亮</p>
+        <img src="d51f7f6e5bced138a8dea9c1acc8a8dc.jpg">
+    </div>
+
+    <div class="contrast">
+        <p>contrast()设置对比度，如果参数为0%，元素会全灰，如果是100%将不会有变化.值越大对比度越明显</p>
+        <img src="d51f7f6e5bced138a8dea9c1acc8a8dc.jpg">
+    </div>
+
+    <div class="drop-shadow">
+        <p>drop-shadow()设置阴影，它和box-shadow属性很像，但是它没有inset关键字</p>
+        <img src="d51f7f6e5bced138a8dea9c1acc8a8dc.jpg">
+    </div>
+
+    <div class="grayscale">
+        <p>grayscale()设置灰度，参数为0%到100%之间，为0%时不会有变化，为100%全灰</p>
+        <img src="d51f7f6e5bced138a8dea9c1acc8a8dc.jpg">
+    </div>
+
+    <div class="hue-rotate">
+        <p>hue-rotate()围绕色环旋转色调，0度不会有变化。没有最大值，但是影响在360度以下</p>
+        <img src="d51f7f6e5bced138a8dea9c1acc8a8dc.jpg">
+    </div>
+
+    <div class="invert">
+        <p>invert()反转，值为0%到100%之间，为0%时不会变化，为100%时完全反转</p>
+        <img src="d51f7f6e5bced138a8dea9c1acc8a8dc.jpg">
+    </div>
+
+    <div class="opacity">
+        <p>opacity()设置不透明度</p>
+        <img src="d51f7f6e5bced138a8dea9c1acc8a8dc.jpg">
+    </div>
+
+    <div class="saturate">
+        <p>saturate()设置饱和度，值越大饱和度越大。100%是不产生变化，0%是完全不饱和</p>
+        <img src="d51f7f6e5bced138a8dea9c1acc8a8dc.jpg">
+    </div>
+
+    <div class="sepia">
+        <p>sepia()将颜色转换到深褐色，值在0到100%之间，为0时，不变化，为100%时，全深褐色</p>
+        <img src="d51f7f6e5bced138a8dea9c1acc8a8dc.jpg">
+    </div>
+</body>
+</html>
